@@ -6,6 +6,7 @@ A new Flutter project.
 ## Extenciones
 
 - [ provider 6.1.2 ](https://pub.dev/packages/provider)
+- [ dio 5.4.1](https://pub.dev/packages/dio)
 
 ## Getting Started
 

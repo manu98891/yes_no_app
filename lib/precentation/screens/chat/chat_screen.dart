@@ -6,31 +6,31 @@ import 'package:yes_no_app/precentation/widgets/chat/her_message_bubble.dart';
 import 'package:yes_no_app/precentation/widgets/chat/my_message_bubble.dart';
 import 'package:yes_no_app/precentation/widgets/shared/message_field_box.dart';
 
-class ChatScream extends StatelessWidget {
-  const ChatScream({super.key});
+class ChatScreen extends StatelessWidget {
+  const ChatScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: const Padding(
-          padding:  EdgeInsets.all(4.0),
+          padding: EdgeInsets.all(4.0),
           child: CircleAvatar(
-            backgroundImage: NetworkImage('https://beta.dopple.ai/_next/image?url=https%3A%2F%2Fimagedelivery.net%2FLBWXYQ-XnKSYxbZ-NuYGqQ%2F160c1996-c98d-4231-dbe9-77536e195300%2Favatarhd&w=128&q=75'),
+            backgroundImage: NetworkImage(
+                'https://www.stylist.co.uk/images/app/uploads/2022/06/01105352/jennifer-aniston-crop-1654077521-1390x1390.jpg?w=256&h=256&fit=max&auto=format%2Ccompress'),
           ),
         ),
-        title: const Text('Henry Cavill'),
+        title: const Text('Mi amor ♥️'),
+        centerTitle: false,
       ),
-      body: _ChatView() ,
+      body: _ChatView(),
     );
   }
 }
 
 class _ChatView extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-
     final chatProvider = context.watch<ChatProvider>();
 
     return SafeArea(
@@ -39,20 +39,20 @@ class _ChatView extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: ListView.builder(
-                controller: ScrollController(),
-                itemCount: chatProvider.messageList.length,
-                itemBuilder: (context, index) {
-                  final message = chatProvider.messageList[index];
+                child: ListView.builder(
+                  controller: chatProvider.chatScrollController,
+                    itemCount: chatProvider.messageList.length,
+                    itemBuilder: (context, index) {
+                      final message = chatProvider.messageList[index];
+                       
+                      return (message.fromWho == FromWho.hers)
+                          ? HerMessageBubble( message: message )
+                          : MyMessageBubble( message: message );
+                    })),
 
-                  return( message.fromWho == FromWho.hers)
-                    ? const HerMessageBubble()
-                    :  MyMessageBubble(messege: message,);
-                },)
-            ),
-      
-            MessageFileBox(
-              //onValue: (value) => chatProvider.sendMessage(value),
+            /// Caja de texto de mensajes
+            MessageFieldBox(
+              // onValue: (value) => chatProvider.sendMessage(value),
               onValue: chatProvider.sendMessage,
             ),
           ],

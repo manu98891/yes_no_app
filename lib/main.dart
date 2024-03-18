@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         title: 'Yes No app',
         debugShowCheckedModeBanner: false,
         theme:  AppTheme().theme(),
-        home: const ChatScream(),
+        home: const ChatScreen(),
       ),
     );
   }

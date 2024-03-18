@@ -1,36 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/config/helpers/get_yes_no_answer.dart';
 import 'package:yes_no_app/domain/entities/message.dart';
 
-class ChatProvider extends ChangeNotifier{
-
-  final ScrollController chatScrollController = ScrollController();
+class ChatProvider extends ChangeNotifier {
+  final chatScrollController = ScrollController();
+  final getYesNoAnswer = GetYesNoAnswer();
 
   List<Message> messageList = [
-    Message(text: 'Hello Henry', fromWho: FromWho.mi),
-    Message(text: 'Do you like Warhammer 40000?', fromWho: FromWho.mi),
-    //Message(text: 'What is your favorite faction ?', fromWho: FromWho.mi)
+    Message(text: 'Hola amor!', fromWho: FromWho.me),
+    Message(text: 'Ya regresaste del trabajo?', fromWho: FromWho.me),
   ];
 
-  Future <void> sendMessage(String text) async {
-    
-    if(text.isEmpty) return;
+  Future<void> sendMessage(String text) async {
+    if (text.isEmpty) return;
 
-    final newMessage = Message(text: text, fromWho: FromWho.mi);
+    final newMessage = Message(text: text, fromWho: FromWho.me);
     messageList.add(newMessage);
 
+    if (text.endsWith('?')) {
+      herReply();
+    }
+
     notifyListeners();
-    //moveScrollToBottom();
+    moveScrollToBottom();
   }
-  /*
+
+  Future<void> herReply() async {
+    final herMessage = await getYesNoAnswer.getAnswer();
+    messageList.add(herMessage);
+    notifyListeners();
+
+    moveScrollToBottom();
+  }
+
   Future<void> moveScrollToBottom() async {
     await Future.delayed(const Duration(milliseconds: 100));
- 
-    chatScrollController.animateTo(
-      chatScrollController.position.extentTotal,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeOut
-    );
-  }  
- */
 
+    chatScrollController.animateTo(
+        chatScrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut);
+  }
 }
