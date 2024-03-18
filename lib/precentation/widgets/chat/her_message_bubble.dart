@@ -16,8 +16,8 @@ class HerMessageBubble extends StatelessWidget {
             color: colors.secondary,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: const Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
               'Todo bien', 
               style:  TextStyle(color: Colors.white),),
@@ -27,7 +27,7 @@ class HerMessageBubble extends StatelessWidget {
 
         _ImageBubble(),
 
-        const SizedBox(height: 10,),
+        const SizedBox(height: 5,),
 
       ],
     );

@@ -2,6 +2,11 @@
 
 A new Flutter project.
 
+
+## Extenciones
+
+- [ provider 6.1.2 ](https://pub.dev/packages/provider)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
